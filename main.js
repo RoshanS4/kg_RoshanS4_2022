@@ -1,57 +1,59 @@
-var digits = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
 
 
 
-function Million(x) 
+
+
+
+function toText(n)
 {
-  if (x >= 1000000) 
+var arr = n.toString(10).split('').map(Number);
+for (var i =0;i<arr.length;i++)
+{
+  if (arr[i] == 0)
   {
-    return Million(Math.floor(x / 1000000))+ Thousand(x % 1000000);
-  } 
-  else 
+    arr[i] = 'Zero';
+  }
+  else if (arr[i]==1)
   {
-    return Thousand(x);
+    arr[i] = 'One';
+  }
+  else if (arr[i]==2)
+  {
+    arr[i] = 'Two';
+  }
+  else if (arr[i]==3)
+  {
+    arr[i] = 'Three';
+  }
+  else if (arr[i]==4)
+  {
+    arr[i] = 'Four';
+  }
+  else if (arr[i]==5)
+  {
+    arr[i] = 'Five';
+  }
+  else if (arr[i]==6)
+  {
+    arr[i] = 'Six';
+  }
+  else if (arr[i]==7)
+  {
+    arr[i] = 'Seven';
+  }
+  else if (arr[i]==8)
+  {
+    arr[i] = 'Eight';
+  }
+  else if (arr[i]==9)
+  {
+    arr[i] = 'Nine';
   }
 }
 
-function Thousand(x) 
-{
-  if (x >= 1000 || x == 000000) 
-  {
-    return Hundred(Math.floor(x / 1000)) + Hundred(x % 1000);
-  } 
-  else 
-  {
-    return Hundred(x);
-  }
-}
+const regex = /NaN/g
+var newarr = arr.join("").replace(regex,",");
 
-function Hundred(x) 
-{
-  if (x > 99 || x==000) 
-  {
-    return digits[Math.floor(x / 100)] + digits[Math.floor((x%100)/10)] + digits[(x%100)%10];
-  }
-   else 
-   {
-    return One(x);
-  }
+return newarr;
 }
-
-function One(x) 
-{
-  if (x < 10 && x>= 0) 
-  {
-      return digits[x];
-  }
-  else if (x >= 10 && x<=99)
-  {
-    return digits[Math.floor(x / 10)]+digits[x % 10];
-  }
-  else
-  {
-    return Million(x);
-  }
-}
-
 
